@@ -1,4 +1,4 @@
-name: Build Dhamma Learning AI V2.1.3 — AAII Agent V5.2 Integration
+name: Build Dhamma Learning AI V2.2.1 — Central Admin Orders Accounts Premium Q&A
 on:
   workflow_dispatch:
   push:
@@ -11,19 +11,24 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - name: Download V2.1.3 source with user-provided Agent V5.2 SDK
+      - name: Download V2.2.1 Native source and Central Admin patch
         run: |
           python -m pip install --disable-pip-version-check gdown
-          gdown 18ahfiWqW0F88VHITFRgdxoUUoMLWp6PX -O source.zip
-          echo "fd4c0fcb95ffa4af1e4dfd454564c491ac7cf50acde7abe16012fad91fce3523  source.zip" | sha256sum -c -
+          gdown 1yGnCmHx3UX4JTeKdZ-0j7FfAlqJqFMd2 -O source.zip
+          echo "a9fbe07292295343e12382b62396bd884231c91eae3a862125a15dda556cd99b  source.zip" | sha256sum -c -
           unzip -oq source.zip
-      - name: Validate curriculum and native reader
+      - name: Validate native reader, server integration and Q&A
         run: |
           python content/verify_certificate_rule_v201.py
           python content/verify_native_book_reader_v210.py
           python content/verify_server_host_v212.py
           python content/verify_agent_v52_integration.py
           python content/validate_qa_v17.py
+      - name: PHP syntax check for additive server patch
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y php-cli
+          find server_patch -name '*.php' -print0 | xargs -0 -n1 php -l
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -45,6 +50,6 @@ jobs:
           sha256sum app/build/outputs/apk/debug/app-debug.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: Dhamma-Learning-AI-V2.1.3-AAII-Agent-V5.2-APK
+          name: Dhamma-Learning-AI-V2.2.1-Central-Admin-Orders-Accounts-Premium-QA-APK
           path: app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
