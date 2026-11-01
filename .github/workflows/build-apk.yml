@@ -1,4 +1,4 @@
-name: Build Dhamma Learning AI V2.1.1 Native Reader APK — Build Fix 1
+name: Build Dhamma Learning AI V2.1.2 Server Host Fix APK
 on:
   workflow_dispatch:
   push:
@@ -14,8 +14,8 @@ jobs:
       - name: Load V2.1.1 native reader source from Google Drive
         run: |
           python -m pip install --disable-pip-version-check gdown
-          gdown 19-PbscSEHbdMnaWI8opJO3oJPfje6ZqT -O source.zip
-          echo "a763c32242f2bdad34233f6656d4e84c97afba39822189fbed5e1fd7286e35df  source.zip" | sha256sum -c -
+          gdown 1oRXWSuCVvfxENE73_Q0em1y6iIUR6oCS -O source.zip
+          echo "e297fcc394dbede4304a219e42552c22ff43998510440d5127089275bd268c39  source.zip" | sha256sum -c -
           unzip -oq source.zip
       - uses: actions/setup-java@v4
         with:
@@ -29,10 +29,11 @@ jobs:
           SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
           yes | "$SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null 2>&1 || true
           "$SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
-      - name: Validate offline content, prompts, exam and chapter reader
+      - name: Validate offline content, prompts, exam, chapter reader and server hostname
         run: |
           python content/verify_certificate_rule_v201.py
           python content/verify_native_book_reader_v210.py
+          python content/verify_server_host_v212.py
       - name: Validate Central Admin PHP patch syntax
         run: |
           sudo apt-get update
@@ -47,6 +48,6 @@ jobs:
           sha256sum app/build/outputs/apk/debug/app-debug.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: Dhamma-Learning-AI-V2.1.1-Native-Reader-Build-Fix1-APK
+          name: Dhamma-Learning-AI-V2.1.2-Server-Host-Fix-APK
           path: app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
