@@ -17,6 +17,15 @@ jobs:
           gdown 1_rJ8AfrMvWPX8H2Lir_6XPrTOTvFxJw5 -O source.zip
           echo "a50896f0fec8151dd751ccbe09feec6bc9254fe2e4078c8246b102a80d42db51  source.zip" | sha256sum -c -
           unzip -oq source.zip
+      - name: Update legacy version assertions for V2.2.4
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for p in Path('content').glob('verify_*.py'):
+              s = p.read_text(encoding='utf-8')
+              s = s.replace('versionCode = 20', 'versionCode = 21').replace('versionName = "2.2.3"', 'versionName = "2.2.4"')
+              p.write_text(s, encoding='utf-8')
+          PY
       - name: Validate native reader, server integration and Q&A
         run: |
           python content/verify_certificate_rule_v201.py
