@@ -1,4 +1,4 @@
-name: Build Dhamma Learning AI V2.1.1 Native Reader APK
+name: Build Dhamma Learning AI V2.1.1 Native Reader APK — Build Fix 1
 on:
   workflow_dispatch:
   push:
@@ -14,8 +14,8 @@ jobs:
       - name: Load V2.1.1 native reader source from Google Drive
         run: |
           python -m pip install --disable-pip-version-check gdown
-          gdown 1CjM-RaYNqLw0_Cwo6gexPw9Lmbjb62Av -O source.zip
-          echo "67dd5922f4f8a18cd7b38349a6291462a95e5b9749578629d8aac4b049957ff1  source.zip" | sha256sum -c -
+          gdown 19-PbscSEHbdMnaWI8opJO3oJPfje6ZqT -O source.zip
+          echo "a763c32242f2bdad34233f6656d4e84c97afba39822189fbed5e1fd7286e35df  source.zip" | sha256sum -c -
           unzip -oq source.zip
       - uses: actions/setup-java@v4
         with:
@@ -47,6 +47,6 @@ jobs:
           sha256sum app/build/outputs/apk/debug/app-debug.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: Dhamma-Learning-AI-V2.1.1-Native-Reader-APK
+          name: Dhamma-Learning-AI-V2.1.1-Native-Reader-Build-Fix1-APK
           path: app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
