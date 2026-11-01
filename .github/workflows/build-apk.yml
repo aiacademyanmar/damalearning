@@ -15,7 +15,7 @@ jobs:
       - name: Retrieve V1.8 source from the linked Drive backup
         run: |
           python -m pip install --disable-pip-version-check gdown
-          gdown --id 1i2vo44sgS7XigbIjCMmyYuSlzRfUtsXZ -O source.zip
+          gdown 1i2vo44sgS7XigbIjCMmyYuSlzRfUtsXZ -O source.zip
           echo "93d5f5947bcd85749ca5619498265e8c9857cd8cb62472db712b1099b8c0b017  source.zip" | sha256sum --check
           unzip -oq source.zip -d .
           test -f settings.gradle.kts
