@@ -14,7 +14,7 @@ jobs:
       - name: Download V2.2.2 Premium Auto Unlock source ZIP
         run: |
           python -m pip install --disable-pip-version-check gdown
-          gdown 1jbTgb7D2xT2RUzT5wLYw3jQG9QACVn7k -O source.zip
+          gdown 1TgW49aU_YiZTW0WiylmB8JXwOB4lz7g5 -O source.zip
           echo "bdfed42280c77e08431f1b2de09fe29e1cbeaf944320711aadab79951aedab3b  source.zip" | sha256sum -c -
           unzip -oq source.zip
       - name: Validate native reader, server integration and Q&A
