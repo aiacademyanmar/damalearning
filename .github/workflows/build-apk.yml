@@ -15,7 +15,7 @@ jobs:
         run: |
           python -m pip install --disable-pip-version-check gdown
           gdown 1jbTgb7D2xT2RUzT5wLYw3jQG9QACVn7k -O source.zip
-          echo "43fd8985a32dfcbb4c312f34afb66b5cf60524c655c0af9cd22960e78d8daf00  source.zip" | sha256sum -c -
+          echo "bdfed42280c77e08431f1b2de09fe29e1cbeaf944320711aadab79951aedab3b  source.zip" | sha256sum -c -
           unzip -oq source.zip
       - name: Validate native reader, server integration and Q&A
         run: |
