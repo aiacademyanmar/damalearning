@@ -25,7 +25,8 @@ jobs:
           gradle-version: '8.10.2'
       - name: Build APK with SDK available on Ubuntu runner
         run: |
-          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          "$SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
           gradle :app:assembleDebug --no-daemon --stacktrace
       - uses: actions/upload-artifact@v4
         with:
