@@ -1,4 +1,4 @@
-name: Build Dhamma Learning AI V2.2.1 — Central Admin Orders Accounts Premium Q&A
+name: Build Dhamma Learning AI V2.2.2 — Paid Subscription Premium Auto Unlock
 on:
   workflow_dispatch:
   push:
@@ -11,11 +11,11 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - name: Download V2.2.1 Native source and Central Admin patch
+      - name: Download V2.2.2 Premium Auto Unlock source ZIP
         run: |
           python -m pip install --disable-pip-version-check gdown
-          gdown 1yGnCmHx3UX4JTeKdZ-0j7FfAlqJqFMd2 -O source.zip
-          echo "a9fbe07292295343e12382b62396bd884231c91eae3a862125a15dda556cd99b  source.zip" | sha256sum -c -
+          gdown 1jbTgb7D2xT2RUzT5wLYw3jQG9QACVn7k -O source.zip
+          echo "43fd8985a32dfcbb4c312f34afb66b5cf60524c655c0af9cd22960e78d8daf00  source.zip" | sha256sum -c -
           unzip -oq source.zip
       - name: Validate native reader, server integration and Q&A
         run: |
@@ -24,6 +24,7 @@ jobs:
           python content/verify_server_host_v212.py
           python content/verify_agent_v52_integration.py
           python content/validate_qa_v17.py
+          python content/verify_premium_auto_unlock_v222.py
       - name: PHP syntax check for additive server patch
         run: |
           sudo apt-get update
@@ -50,6 +51,6 @@ jobs:
           sha256sum app/build/outputs/apk/debug/app-debug.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: Dhamma-Learning-AI-V2.2.1-Central-Admin-Orders-Accounts-Premium-QA-APK
+          name: Dhamma-Learning-AI-V2.2.2-Central-Admin-Orders-Accounts-Premium-QA-APK
           path: app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
