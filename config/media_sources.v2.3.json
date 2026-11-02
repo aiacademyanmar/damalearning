@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "app": "Dhamma Learning AI",
+  "release": "V2.3 Media Hub integration draft",
+  "sources": {
+    "tv": {
+      "title": "Dhamma TV",
+      "access": "PUBLIC",
+      "provider": "youtube_playlist",
+      "playlistUrl": "https://www.youtube.com/playlist?list=PLWCMc7qMgk8v2dGeWK8XCM6njviYUmqlq"
+    },
+    "videos": {
+      "title": "Video Library",
+      "access": "PREMIUM",
+      "provider": "google_drive",
+      "folderId": "1f7tfMTouyQ5iQZPRXujApTQ8Aar6yclY",
+      "supportedExtensions": [
+        "mp4",
+        "webm",
+        "mkv"
+      ]
+    },
+    "audio": {
+      "title": "Dhamma Radio & Cassette",
+      "access": "PREMIUM",
+      "provider": "google_drive",
+      "folderId": "1qtjVG0KZlxpSG0G_poYluIaFLU2UbK-7",
+      "supportedExtensions": [
+        "mp3",
+        "m4a",
+        "aac",
+        "wav",
+        "ogg"
+      ]
+    },
+    "books": {
+      "title": "Dhamma Books",
+      "access": "PREMIUM",
+      "provider": "google_drive",
+      "folderId": "1arcX4FjJF5-Y2z3ngCXHroYX3IbAVS5F",
+      "supportedExtensions": [
+        "pptx",
+        "pdf",
+        "epub",
+        "html",
+        "htm"
+      ]
+    },
+    "telegram": {
+      "title": "Premium Community",
+      "access": "PREMIUM",
+      "provider": "telegram_invite",
+      "inviteUrl": "https://t.me/+5TBsuXYeNUQwNTBl"
+    }
+  },
+  "security": {
+    "enforcePremiumOnBackend": true,
+    "useShortLivedSignedMediaUrls": true,
+    "neverBundleDriveTokensInApk": true,
+    "telegramInviteLinkShouldBeRotatable": true
+  },
+  "sync": {
+    "strategy": "backend_catalog_pagination",
+    "download": "opt_in_with_license_checks",
+    "cache": "encrypted_app_private"
+  },
+  "viewer": {
+    "video": "Media3 ExoPlayer + fullscreen/PiP",
+    "audio": "Media3 + MediaSession + cassette/FM skin",
+    "pdf": "native PDF renderer",
+    "epub": "EPUB reader engine",
+    "html": "sanitized WebView with file access disabled",
+    "pptx": "server-convert-to-PDF-or-slide-images"
+  },
+  "status": {
+    "androidIntegrated": false,
+    "mediaImported": false,
+    "verifiedPublicAccess": false
+  }
+}
